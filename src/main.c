@@ -1,9 +1,13 @@
 #include <stdio.h>
+#include <direct.h>
+#include <stdlib.h>
+
 #include <conio.h>
+
+#include "logger.h"
 
 int main()
 {
-    printf("Program was been launched");
+    log_info("Programm was been launched");
     getch();
-    return 0;
 }
