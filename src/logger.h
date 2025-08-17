@@ -1,19 +1,29 @@
 #pragma once
-
 #include <stdio.h>
-#include <string.h>
 
 void log_info(const char *log)
 {
-    printf("[Info] %s\n", log);
+    const char *log_type = "[Info] %s\n";
+    printf(log_type, log);
+    FILE *file = fopen(".\\logs.txt", "a");
+    fprintf(file, log_type, log);
+    fclose(file);
 }
 
 void log_warning(const char *log)
 {
-    printf("[Warning] %s\n", log);
+    const char *log_type = "[Warning] %s\n";
+    printf(log_type, log);
+    FILE *file = fopen(".\\logs.txt", "a");
+    fprintf(file, log_type, log);
+    fclose(file);
 }
 
 void log_error(const char *log)
 {
-    printf("[Error] %s\n", log);
+    const char *log_type = "[Error] %s\n";
+    printf(log_type, log);
+    FILE *file = fopen(".\\logs.txt", "a");
+    fprintf(file, log_type, log);
+    fclose(file);
 }
