@@ -1,37 +1,64 @@
 #pragma once
-#include <direct.h>
 #include <stdlib.h>
 #include <dirent.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/stat.h>
 
 #include "logger.h"
 
-char* full_path(const char* path1, const char* path2);
+int path_exists(const char* path);
+int is_dir(const char* path);
 
-static inline int clean_dir(const char* path)
+int clean_dir(const char* path)
 {
-    DIR* dir = opendir(path);
-
-    if (dir == NULL)
+    if (!path_exists(path))
     {
-        char* mess = concat("directory with name", path);
-        mess = concat(mess,"not exists");
-        log_error(mess);
-        free(mess);
+        char* log = "path with name ";
+        log = concat(log, path);
+        log = concat(log, " not exists");
+        log_error(log);
+        return 1;
     }
 
-
-    struct dirent* entry;
-
-    rewinddir(dir);
-    while ((entry = readdir(dir)))
+    if (is_dir(path))
     {
-        if (strcmp(entry->d_name,".") == 0 || strcmp(entry->d_name,"..") == 0) continue;
+        struct dirent* entry;
 
-        char* fp = concat(path, entry->d_name);
-        log_info(fp);
-        free(fp);
+        DIR* dir = opendir(path);
+
+        while ((entry = readdir(dir)) != NULL)
+        {
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
+
+            char* fp = concat(path, entry->d_name);
+
+            if (is_dir(fp))
+                clean_dir(concat(fp, "\\"));
+            else
+            {
+                log_info(concat(concat("file with path \"",fp),"\" was been removed"));
+                remove(fp);
+            }
+
+            free(fp);
+        }
     }
 
+    return 0;
+}
+
+inline int path_exists(const char* path)
+{
+    return access(path,F_OK) == 0;
+}
+
+inline int is_dir(const char* path)
+{
+    struct stat statbuf;
+    if (stat(path, &statbuf) == 0)
+    {
+        return S_ISDIR(statbuf.st_mode);
+    }
     return 0;
 }

@@ -13,7 +13,5 @@ int main()
     setlocale(LC_ALL, "");
 
     log_info("Program was been launched");
-    clean_dir("F:\\WCleaner\\");
-
-    getch();
+    clean_dir("F:\\WCleaner\\test\\");
 }
