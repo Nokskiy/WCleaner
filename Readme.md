@@ -28,14 +28,14 @@
     ```
     2. Build project
     ``` bash
-       mkdir build | gcc ./src/main.c -o ./build/WCleaner.exe
+    mkdir build | gcc ./src/main.c -o ./build/WCleaner.exe
     ```
     3. Add WCleaner.exe file to path
 
 # 🚀 Usage
 
-```bash
-  WCleaner
+``` bash
+WCleaner
 ```
 
 > [!IMPORTANT]
