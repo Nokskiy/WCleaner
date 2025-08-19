@@ -16,7 +16,6 @@ static inline void log_info(const char* log)
 
 static inline void log_warning(const char* log)
 {
-
     const char* log_type = "[Warning] %s\n";
     printf(log_type, log);
     FILE* file = fopen(".\\logs.txt", log_cleaned == 1 ? "a" : "w");

@@ -37,7 +37,7 @@ int clean_dir(const char* path)
                 clean_dir(concat(fp, "\\"));
             else
             {
-                log_info(concat(concat("file with path \"",fp),"\" was been removed"));
+                log_info(concat(concat("file with path \"", fp), "\" was been removed"));
                 remove(fp);
             }
 
@@ -59,8 +59,6 @@ inline int is_dir(const char* path)
 {
     struct stat statbuf;
     if (stat(path, &statbuf) == 0)
-    {
         return S_ISDIR(statbuf.st_mode);
-    }
     return 0;
 }
