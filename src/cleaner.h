@@ -43,6 +43,8 @@ int clean_dir(const char* path)
 
             free(fp);
         }
+        if ((entry = readdir(dir)) == NULL)
+            rmdir(path);
     }
 
     return 0;
