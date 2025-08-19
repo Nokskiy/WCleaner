@@ -7,7 +7,7 @@ static inline void log_info(const char* log)
 {
     const char* log_type = "[Info] %s\n";
     printf(log_type, log);
-    FILE* file = fopen(".\\logs.txt", log_cleaned == 1 ? "a" : "w");
+    FILE* file = fopen(".\\wcleaner_logs.txt", log_cleaned == 1 ? "a" : "w");
     log_cleaned = 1;
 
     fprintf(file, log_type, log);
@@ -18,7 +18,7 @@ static inline void log_warning(const char* log)
 {
     const char* log_type = "[Warning] %s\n";
     printf(log_type, log);
-    FILE* file = fopen(".\\logs.txt", log_cleaned == 1 ? "a" : "w");
+    FILE* file = fopen(".\\wcleaner_logs.txt", log_cleaned == 1 ? "a" : "w");
     log_cleaned = 1;
 
     fprintf(file, log_type, log);
@@ -29,7 +29,7 @@ static inline void log_error(const char* log)
 {
     const char* log_type = "[Error] %s\n";
     printf(log_type, log);
-    FILE* file = fopen(".\\logs.txt", log_cleaned == 1 ? "a" : "w");
+    FILE* file = fopen(".\\wcleaner_logs.txt", log_cleaned == 1 ? "a" : "w");
     log_cleaned = 1;
 
     fprintf(file, log_type, log);
